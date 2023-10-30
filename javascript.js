@@ -10,7 +10,7 @@ let operator;
 let secondNumber;
 
 function operate(a, op, b) {
-    return operators[op](a, b);
+    return operators[op](+a, +b);
 }
 
 const display = document.querySelector('#display');
@@ -30,4 +30,7 @@ const equals = document.querySelector('#equals');
 equals.addEventListener('click', () => {
     let equation = display.textContent;
     console.log(equation);
+    let eqArray = equation.split(' ');
+    console.log(eqArray)
+    console.log(operate(eqArray[0], eqArray[1], eqArray[2]));
 });
