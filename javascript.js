@@ -36,3 +36,7 @@ equals.addEventListener('click', () => {
     console.log(answer);
     display.textContent = answer;
 });
+const clear = document.querySelector('#clear');
+clear.addEventListener('click', () => {
+    display.textContent = '';
+})
