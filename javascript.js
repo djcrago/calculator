@@ -31,6 +31,8 @@ equals.addEventListener('click', () => {
     let equation = display.textContent;
     console.log(equation);
     let eqArray = equation.split(' ');
-    console.log(eqArray)
-    console.log(operate(eqArray[0], eqArray[1], eqArray[2]));
+    console.log(eqArray);
+    let answer = operate(eqArray[0], eqArray[1], eqArray[2]);
+    console.log(answer);
+    display.textContent = answer;
 });
