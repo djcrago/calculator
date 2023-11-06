@@ -18,7 +18,9 @@ function equals() {
         answer = operate(answer, equationArr[0], equationArr[1]);
         equationArr.splice(0,2);
     }
-    display.textContent = Math.round(answer * 100) / 100;
+    if (answer == 'Infinity' || answer == '-Infinity' || isNaN(answer)) {
+        display.textContent = 'Don\'t divide by zero!';
+    } else display.textContent = Math.round(answer * 100) / 100;
 }
 
 const display = document.querySelector('#display');
@@ -43,6 +45,3 @@ const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     display.textContent = '';
 });
-
-display.textContent = '1 + 2 + 3';
-console.log(equals());
