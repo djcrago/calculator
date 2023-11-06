@@ -5,10 +5,6 @@ let operators = {
     '/': (a, b) => a / b,
 }
 
-let firstNumber; //we haven't used these yet...
-let operator;
-let secondNumber;
-
 function operate(a, op, b) {
     return operators[op](+a, +b);
 };
@@ -19,9 +15,11 @@ function equals() {
     let answer;
     answer = operate(eqArray[0], eqArray[1], eqArray[2]);
     eqArray.splice(0, 3);
-    if(eqArray.length === 0) {
-        display.textContent = answer;
+    while (eqArray.length > 0) {
+        answer = operate(answer, eqArray[0], eqArray[1]);
+        eqArray.splice(0,2);
     }
+    display.textContent = answer;
 }
 
 const display = document.querySelector('#display');
