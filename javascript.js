@@ -89,7 +89,6 @@ function equals() {
 const body = document.querySelector('body');
 body.addEventListener('keydown', () => { //keyboard support
     let key = event.key;
-    console.log(key);
     if (key === 'Tab') {
         event.preventDefault();
     } else if (key === '1' || key === '2' || key === '3' || key === '4' || key === '5' || key === '6' || key === '7' || key === '8' || key === '9' || key === '0') {
