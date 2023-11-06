@@ -10,6 +10,7 @@ function operate(a, op, b) {
 };
 
 const display = document.querySelector('#display');
+display.textContent = '0';
 
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
@@ -32,7 +33,7 @@ equalsBtn.addEventListener('click', equals);
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
-    display.textContent = '';
+    display.textContent = '0';
 });
 
 const decimal = document.querySelector('#decimal');
@@ -42,21 +43,18 @@ const backspace = document.querySelector('#backspace');
 backspace.addEventListener('click', backSpace);
 
 function addNumber(number) {
-    if (display.textContent === 'Don\'t divide by zero!') {
+    if (display.textContent === '0' || display.textContent === 'Don\'t divide by zero!') {
         display.textContent = '';
     }
     display.textContent += number;
 }
 
 function addOperator(operator) {
-    console.log(display.textContent.charAt(display.textContent.length-1));
-    if (display.textContent.length > 4 && display.textContent.charAt(display.textContent.length-1) === ' ') {
+    if (display.textContent.length > 4 && display.textContent.charAt(display.textContent.length-1) === ' ') { //if user tries to input two operators in a row, change the current operator to the new one
         let str = display.textContent;
         display.textContent = str.slice(0, -3);
         display.textContent += ' ' + operator + ' ';
-    } else if (display.textContent !== '' && display.textContent.charAt(display.textContent.length-1) !== '.') { //don't start equation with operator && don't allow two operators in a row && don't allow a number to end with a decimal
-        display.textContent += ' ' + operator + ' ';
-    }
+    } else display.textContent += ' ' + operator + ' ';
 }
 
 function addDecimal() {
@@ -69,6 +67,8 @@ function backSpace() {
     let str = display.textContent;
     if (str.slice(-1) === ' ') {
         display.textContent = str.slice(0, -3);
+    } else if (str.length === 1) {
+        display.textContent = '0'
     } else display.textContent = str.slice(0, -1);
 }
 
@@ -79,7 +79,7 @@ function equals() {
     equationArr.splice(0, 3);
     while (equationArr.length > 0) {
         answer = operate(answer, equationArr[0], equationArr[1]);
-        equationArr.splice(0,2);
+        equationArr.splice(0, 2);
     }
     if (answer == 'Infinity' || answer == '-Infinity' || isNaN(answer)) {
         display.textContent = 'Don\'t divide by zero!';
@@ -87,25 +87,20 @@ function equals() {
 }
 
 const body = document.querySelector('body');
-body.addEventListener('keydown', () => {
+body.addEventListener('keydown', () => { //keyboard support
     let key = event.key;
+    console.log(key);
     if (key === 'Tab') {
         event.preventDefault();
-    }
-    console.log(key);
-    if (key === '1' || key === '2' || key === '3' || key === '4' || key === '5' || key === '6' || key === '7' || key === '8' || key === '9' || key === '0') {
+    } else if (key === '1' || key === '2' || key === '3' || key === '4' || key === '5' || key === '6' || key === '7' || key === '8' || key === '9' || key === '0') {
         addNumber(key);
-    }
-    if (key === '+' || key === '-' || key === '*' || key === '/') {
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
         addOperator(key);
-    }
-    if (key === '.') {
+    } else if (key === '.') {
         addDecimal();
-    }
-    if (key === 'Enter' || key === '=') {
+    } else if (key === 'Enter' || key === '=') {
         equals();
-    }
-    if (key === 'Backspace') {
+    } else if (key === 'Backspace') {
         backSpace();
     }
 });
