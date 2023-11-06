@@ -27,21 +27,31 @@ const display = document.querySelector('#display');
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
-        if (display.textContent === 'Don\'t divide by zero!') {
-            display.textContent = '';
-        }
-        display.textContent += number.id;
+        let numberToAdd = number.id;
+        addNumber(numberToAdd);
     });
 });
+
+function addNumber(number) {
+    if (display.textContent === 'Don\'t divide by zero!') {
+        display.textContent = '';
+    }
+    display.textContent += number;
+}
 
 const opButtons = document.querySelectorAll('.operator');
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (display.textContent !== '' && display.textContent.charAt(display.textContent.length-1) !== ' ' && display.textContent.charAt(display.textContent.length-1) !== '.') { //don't start equation with operator && don't allow two operators in a row && don't allow a number to end with a decimal
-            display.textContent += ' ' + button.id + ' ';
-        }
+        let operatorToAdd = button.id;
+        addOperator(operatorToAdd);
     });
 });
+
+function addOperator(operator) {
+    if (display.textContent !== '' && display.textContent.charAt(display.textContent.length-1) !== ' ' && display.textContent.charAt(display.textContent.length-1) !== '.') { //don't start equation with operator && don't allow two operators in a row && don't allow a number to end with a decimal
+        display.textContent += ' ' + operator + ' ';
+    }
+}
 
 const equalsBtn = document.querySelector('#equals');
 equalsBtn.addEventListener('click', equals);
@@ -52,30 +62,44 @@ clear.addEventListener('click', () => {
 });
 
 const decimal = document.querySelector('#decimal');
-decimal.addEventListener('click', () => {
+decimal.addEventListener('click', addDecimal);
+
+function addDecimal() {
     if (display.textContent.includes('.') === false) {
         display.textContent += '.';
     }
-});
+}
 
 const backspace = document.querySelector('#backspace');
-backspace.addEventListener('click', () => {
-    // let unedited = display.textContent;
-    // let uneditedArr = unedited.split(' ');
-    // let lastChar = unedited.slice(-1);
-    // let spaceOrNoSpace = '';
-    // if (lastChar === ' ') {
-    //     uneditedArr.splice(-2, 2);
-    // } else {
-    //     uneditedArr.splice(-1, 1);
-    //     spaceOrNoSpace = ' ';
-    // }
-    // let edited = uneditedArr.join(' ');
-    // edited += spaceOrNoSpace;
-    // display.textContent = edited;
+backspace.addEventListener('click', backSpace);
 
+function backSpace() {
     let str = display.textContent;
     if (str.slice(-1) === ' ') {
         display.textContent = str.slice(0, -3);
     } else display.textContent = str.slice(0, -1);
+}
+
+const body = document.querySelector('body');
+body.addEventListener('keydown', () => {
+    let key = event.key;
+    if (key === 'Tab') {
+        event.preventDefault();
+    }
+    console.log(key);
+    if (key === '1' || key === '2' || key === '3' || key === '4' || key === '5' || key === '6' || key === '7' || key === '8' || key === '9' || key === '0') {
+        addNumber(key);
+    }
+    if (key === '+' || key === '-' || key === '*' || key === '/') { //come back for '/'
+        addOperator(key);
+    }
+    if (key === '.') {
+        addDecimal();
+    }
+    if (key === 'Enter' || key === '=') {
+        equals();
+    }
+    if (key === 'Backspace') {
+        backSpace();
+    }
 });
