@@ -37,7 +37,7 @@ numbers.forEach((number) => {
 const opButtons = document.querySelectorAll('.operator');
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (display.textContent !== '') {
+        if (display.textContent !== '' && display.textContent.charAt(display.textContent.length-1) !== ' ') { //don't start equation with operator && don't allow two operators in a row
             display.textContent += ' ' + button.id + ' ';
         }
     });
