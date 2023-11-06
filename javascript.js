@@ -11,15 +11,14 @@ function operate(a, op, b) {
 
 function equals() {
     let equation = display.textContent;
-    let eqArray = equation.split(' ');
-    let answer;
-    answer = operate(eqArray[0], eqArray[1], eqArray[2]);
-    eqArray.splice(0, 3);
-    while (eqArray.length > 0) {
-        answer = operate(answer, eqArray[0], eqArray[1]);
-        eqArray.splice(0,2);
+    let equationArr = equation.split(' ');
+    let answer = operate(equationArr[0], equationArr[1], equationArr[2]);
+    equationArr.splice(0, 3);
+    while (equationArr.length > 0) {
+        answer = operate(answer, equationArr[0], equationArr[1]);
+        equationArr.splice(0,2);
     }
-    display.textContent = answer;
+    display.textContent = Math.round(answer * 100) / 100;
 }
 
 const display = document.querySelector('#display');
@@ -46,4 +45,4 @@ clear.addEventListener('click', () => {
 });
 
 display.textContent = '1 + 2 + 3';
-console.log(equals())
+console.log(equals());
