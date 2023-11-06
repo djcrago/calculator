@@ -48,11 +48,6 @@ button {
     flex-direction: column;
 }
 
-.equalsAndClear {
-    display: flex;
-
-}
-
 #equals,
 #clear {
     width: 100px;
