@@ -57,3 +57,25 @@ decimal.addEventListener('click', () => {
         display.textContent += '.';
     }
 });
+
+const backspace = document.querySelector('#backspace');
+backspace.addEventListener('click', () => {
+    // let unedited = display.textContent;
+    // let uneditedArr = unedited.split(' ');
+    // let lastChar = unedited.slice(-1);
+    // let spaceOrNoSpace = '';
+    // if (lastChar === ' ') {
+    //     uneditedArr.splice(-2, 2);
+    // } else {
+    //     uneditedArr.splice(-1, 1);
+    //     spaceOrNoSpace = ' ';
+    // }
+    // let edited = uneditedArr.join(' ');
+    // edited += spaceOrNoSpace;
+    // display.textContent = edited;
+
+    let str = display.textContent;
+    if (str.slice(-1) === ' ') {
+        display.textContent = str.slice(0, -3);
+    } else display.textContent = str.slice(0, -1);
+});
