@@ -27,6 +27,9 @@ const display = document.querySelector('#display');
 const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
+        if (display.textContent === 'Don\'t divide by zero!') {
+            display.textContent = '';
+        }
         display.textContent += number.id;
     });
 });
@@ -34,6 +37,9 @@ numbers.forEach((number) => {
 const opButtons = document.querySelectorAll('.operator');
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        if (display.textContent === 'Don\'t divide by zero!') {
+            display.textContent = '';
+        }
         display.textContent += ' ' + button.id + ' ';
     });
 });
