@@ -37,7 +37,7 @@ numbers.forEach((number) => {
 const opButtons = document.querySelectorAll('.operator');
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (display.textContent !== '' && display.textContent.charAt(display.textContent.length-1) !== ' ') { //don't start equation with operator && don't allow two operators in a row
+        if (display.textContent !== '' && display.textContent.charAt(display.textContent.length-1) !== ' ' && display.textContent.charAt(display.textContent.length-1) !== '.') { //don't start equation with operator && don't allow two operators in a row && don't allow a number to end with a decimal
             display.textContent += ' ' + button.id + ' ';
         }
     });
@@ -49,4 +49,11 @@ equalsBtn.addEventListener('click', equals);
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     display.textContent = '';
+});
+
+const decimal = document.querySelector('#decimal');
+decimal.addEventListener('click', () => {
+    if (display.textContent.includes('.') === false) {
+        display.textContent += '.';
+    }
 });
