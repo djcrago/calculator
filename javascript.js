@@ -37,10 +37,9 @@ numbers.forEach((number) => {
 const opButtons = document.querySelectorAll('.operator');
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (display.textContent === 'Don\'t divide by zero!') {
-            display.textContent = '';
+        if (display.textContent !== '') {
+            display.textContent += ' ' + button.id + ' ';
         }
-        display.textContent += ' ' + button.id + ' ';
     });
 });
 
