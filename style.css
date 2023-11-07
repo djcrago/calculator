@@ -51,7 +51,8 @@ button {
     margin-right: 20px;
 }
 
-.number {
+.number,
+#decimal {
     margin-right: 5px;
 }
 
