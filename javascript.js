@@ -50,7 +50,7 @@ function addNumber(number) {
 }
 
 function addOperator(operator) {
-    if (display.textContent.length > 4 && display.textContent.charAt(display.textContent.length-1) === ' ') { //if user tries to input two operators in a row, change the current operator to the new one
+    if (display.textContent.length > 0 && display.textContent.charAt(display.textContent.length-1) === ' ') { //if user tries to input two operators in a row, change the current operator to the new one
         let str = display.textContent;
         display.textContent = str.slice(0, -3);
     }
