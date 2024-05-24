@@ -1,7 +1,18 @@
-Some of the things I learned throughout the process of completing this project include:
+# Calculator
 
-* More extensive flexbox usage
-* Utilizing objects and accessing functions using bracket notation
-* Referencing an id to using in a function, inside of an EventListener
-* Adding functionality rather than focusing on a single problem
-* Adding keyboard support for an originaly click-driven system
+This repository houses a calculator app.
+The live website can be found here: https://djcrago.github.io/calculator/
+
+Screenshot of Live Website:
+![Screenshot of website this repository houses](./website-screenshot.png?raw=true 'Website Screenshot')
+
+## Features
+
+- Basic arithmetic operations
+- Flexbox usage
+- Bracket notation
+- Keyboard support
+
+## License
+
+The project is licensed under the ISC license.
